@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 扩展库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 转换jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入prop-types,用于对组件标签属性进行限制 -->
+    <script src="../js/prop-types.js"></script>
+    <script type="text/babel">
+      class Person extends React.Component {
+        render() {
+          const { name, sex, age } = this.props;
+          // prop是只读的
+          // this.props.name = "jack";
+          return (
+            <ul>
+              <li>姓名：{name}</li>
+              <li>性别：{sex}</li>
+              <li>年龄：{age + 1}</li>
+            </ul>
+          );
+        }
+      }
+      // 指定属性类型及设置必填项
+      Person.propTypes = {
+        name: PropTypes.string.isRequired,
+        sex: PropTypes.string,
+        age: PropTypes.number,
+        speak: PropTypes.func,
+      };
+      // 设置默认属性
+      Person.defaultProps = {
+        sex: "女",
+        age: 18,
+      };
+      const p = { name: "jeery", sex: "男", age: 17 };
+      function speak() {
+        console.log("我说话了");
+      }
+      ReactDOM.render(<Person {...p} />, document.getElementById("test1"));
+      ReactDOM.render(
+        <Person name="tom" speak={speak} />,
+        document.getElementById("test2")
+      );
+    </script>
+  </body>
+</html>

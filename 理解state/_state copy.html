@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 扩展库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 转换jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      class Weather extends React.Component {
+        render() {
+          console.log("this:", this);
+          return <h1>我是用类定义的组件（适用于复杂组件的定义）</h1>;
+        }
+      }
+      ReactDOM.render(<Weather />, document.getElementById("test"));
+    </script>
+  </body>
+</html>

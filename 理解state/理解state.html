@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 扩展库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 转换jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      // 1.创建组件
+      class Weather extends React.Component {
+        /**
+         * 构造器中能收到什么数据，取决于new的时候，传的是什么数据
+         * new Weather并不是我们操作的，而是react操作的
+         */
+        constructor(props) {
+          // 还没学到props，但得用着，模仿官网写
+          // 类本身语法
+          super(props);
+          // 构造函数中this指向构造函数实例对象
+          // 16.8之前，state是{}，16.8及之后，是null
+          this.state = {
+            isHot: true,
+          };
+        }
+
+        // state在Weather的实例对象身上
+        render() {
+          console.log("this:", this);
+          return (
+            <h1 onClick={demo}>
+              今天天气很{this.state.isHot ? "炎热" : "凉爽"}
+            </h1>
+          );
+        }
+      }
+      function demo() {
+        console.log("demo被调用");
+      }
+      //  2.渲染组件到页面
+      ReactDOM.render(<Weather />, document.getElementById("test"));
+    </script>
+  </body>
+</html>

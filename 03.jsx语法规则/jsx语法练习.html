@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 扩展库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 转换jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+      const data = ["Angular", "React", "Vue"];
+      /**
+       * 表达式与语句区别：
+       *1.表达式：一个表达式会产生一个值，有可能是运算、函数调用、有可能是字面量，可以放在任何一个需要值的地方，
+       *exp:(1).a,(2).a+b,(3).demo(1) (4).arr.map()（5）.function test(){}
+       *2.语句：语句可以理解为一个行为，循环语句和判断语句就是典型的语句。
+       *exp:if(){},for(){},switch(){case:xxx}
+       */
+      const VDOM = (
+        <div>
+          <h1>前端js框架列表</h1>
+          <ul>
+            {data.map((item, index) => {
+              return <li key={index}>{item}</li>;
+            })}
+          </ul>
+        </div>
+      );
+      ReactDOM.render(VDOM, document.getElementById("test"));
+    </script>
+  </body>
+</html>

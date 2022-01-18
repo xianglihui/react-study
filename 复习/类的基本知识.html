@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 创建一个Person类
+      class Person {
+        // 构造器方法 获取传参
+        constructor(name, age) {
+          // 构造器中的this是？---类的实例对象,20行指p1，21行指p2
+          this.name = name;
+          this.age = age;
+        }
+        // 一般方法
+        speak() {
+          // speak方法在哪？在Person的原型链上，供实例使用
+          console.log(`我叫${this.name},我年龄${this.age}`);
+        }
+      }
+      // 创建一个Student类 继承Person类
+      class Student extends Person {
+        /**
+         * 构造器不是必须写的，必须写的场景:Student类身上有独有的属性
+         * 子类中增加构造器后，需要加上super,super是帮你调用父类的构造器
+         */
+        constructor(name, age, grade) {
+          super(name, age);
+          // this.name = name;
+          // this.age = age;
+          this.grade = grade;
+        }
+        // 重写从父类继承过来的方法
+        speak(){
+          console.log(`我叫${this.name},我年龄${this.age}`,`我读的是${this.grade}年级`);
+        }
+        ddemo(){
+          console.log('haha')
+        }
+      }
+      const s1 = new Student("小张", 15, "高一");
+      s1.speak(); //原型链查找到父类的原型
+      console.log("s1", s1);
+    </script>
+  </body>
+</html>
